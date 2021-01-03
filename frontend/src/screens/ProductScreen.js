@@ -84,10 +84,10 @@ const ProductScreen = ({ history, match }) => {
             text={`${product.numReviews} reviews`}
           />
           <div className="ingredients">
-            {product.prices ? (
+            {product.ingredients ? (
               <ul>
-                {product.prices.map((price, index) => (
-                  <li key={index}>{price}</li>
+                {product.ingredients.map((ingredient, index) => (
+                  <li key={index}>{ingredient}</li>
                 ))}
               </ul>
             ) : null}

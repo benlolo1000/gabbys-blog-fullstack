@@ -13,14 +13,17 @@ const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
 
   const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [prices, setPrices] = useState([]);
+  const [ingredient, setIngredient] = useState('');
+  const [ingredients, setIngredients] = useState([]);
   const [image, setImage] = useState('');
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
+
+  console.log('at top of file');
+  console.log(ingredients);
 
   const dispatch = useDispatch();
 
@@ -43,7 +46,7 @@ const ProductEditScreen = ({ match, history }) => {
         dispatch(listProductDetails(productId));
       } else {
         setName(product.name);
-        setPrice(product.price);
+        setIngredient(product.ingredient);
         setImage(product.image);
         setBrand(product.brand);
         setCategory(product.category);
@@ -82,7 +85,7 @@ const ProductEditScreen = ({ match, history }) => {
       updateProduct({
         _id: productId,
         name,
-        prices,
+        ingredients,
         image,
         brand,
         category,
@@ -92,12 +95,12 @@ const ProductEditScreen = ({ match, history }) => {
     );
   };
 
-  const addPriceItem = (e) => {
+  const addIngredientItem = (e) => {
     e.preventDefault();
 
-    prices.push(price);
-    console.log(prices);
-    setPrice('');
+    console.log('inside add function');
+    console.log(ingredients);
+    setIngredient(ingredients.push(ingredient));
   };
 
   return (
@@ -125,22 +128,23 @@ const ProductEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId="price">
-              {console.log(price)}
+            <Form.Group controlId="ingredient">
+              {console.log('inside react tag')}
+              {console.log(ingredient)}
               <Form.Label>List Ingredients</Form.Label>
               <Form.Control
                 type="array"
                 placeholder="Enter ingredient"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                value={ingredient}
+                onChange={(e) => setIngredient(e.target.value)}
               ></Form.Control>
-              <button onClick={addPriceItem}>add ingredient</button>
+              <button onClick={addIngredientItem}>add ingredient</button>
             </Form.Group>
 
             <div>
               <ul>
-                {prices.map((prices, index) => (
-                  <li key={index}>{prices}</li>
+                {ingredients.map((ingredients, index) => (
+                  <li key={index}>{ingredients}</li>
                 ))}
               </ul>
             </div>
