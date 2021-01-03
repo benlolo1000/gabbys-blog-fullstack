@@ -14,42 +14,39 @@ import Rating from '../components/Rating';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Meta from '../components/Meta';
-import {
-  listProductDetails,
-  createProductReview,
-} from '../actions/productActions';
-import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
+import { listPostDetails, createPostReview } from '../actions/postActions';
+import { POST_CREATE_REVIEW_RESET } from '../constants/postConstants';
 
-const ProductScreen = ({ history, match }) => {
+const PostScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
   const dispatch = useDispatch();
 
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const postDetails = useSelector((state) => state.postDetails);
+  const { loading, error, post } = postDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const productReviewCreate = useSelector((state) => state.productReviewCreate);
+  const postReviewCreate = useSelector((state) => state.postReviewCreate);
   const {
-    success: successProductReview,
-    loading: loadingProductReview,
-    error: errorProductReview,
-  } = productReviewCreate;
+    success: successPostReview,
+    loading: loadingPostReview,
+    error: errorPostReview,
+  } = postReviewCreate;
 
   useEffect(() => {
-    if (successProductReview) {
+    if (successPostReview) {
       setRating(0);
       setComment('');
     }
-    if (!product._id || product._id !== match.params.id) {
-      dispatch(listProductDetails(match.params.id));
-      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
+    if (!post._id || post._id !== match.params.id) {
+      dispatch(listPostDetails(match.params.id));
+      dispatch({ type: POST_CREATE_REVIEW_RESET });
     }
-  }, [dispatch, match, successProductReview]);
+  }, [dispatch, match, successPostReview]);
 
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);
@@ -58,7 +55,7 @@ const ProductScreen = ({ history, match }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      createProductReview(match.params.id, {
+      createPostReview(match.params.id, {
         rating,
         comment,
       })
@@ -66,7 +63,7 @@ const ProductScreen = ({ history, match }) => {
   };
 
   return (
-    <div className="productScreen">
+    <div className="postScreen">
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
@@ -76,27 +73,24 @@ const ProductScreen = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Meta title={product.name} />
-          <Image src={product.image} alt={product.name} fluid />
-          <h3>{product.name}</h3>
-          <Rating
-            value={product.rating}
-            text={`${product.numReviews} reviews`}
-          />
+          <Meta title={post.name} />
+          <Image src={post.image} alt={post.name} fluid />
+          <h3>{post.name}</h3>
+          <Rating value={post.rating} text={`${post.numReviews} reviews`} />
           <div className="ingredients">
-            {product.ingredients ? (
+            {post.ingredients ? (
               <ul>
-                {product.ingredients.map((ingredient, index) => (
+                {post.ingredients.map((ingredient, index) => (
                   <li key={index}>{ingredient}</li>
                 ))}
               </ul>
             ) : null}
           </div>
-          <div className="description">Description: {product.description}</div>
+          <div className="description">Description: {post.description}</div>
           <h2>Reviews</h2>
-          {product.reviews.length === 0 && <div>No Reviews</div>}
+          {post.reviews.length === 0 && <div>No Reviews</div>}
           <ListGroup variant="flush">
-            {product.reviews.map((review) => (
+            {post.reviews.map((review) => (
               <ListGroup.Item key={review._id}>
                 <strong>{review.name}</strong>
                 <Rating value={review.rating} />
@@ -106,14 +100,14 @@ const ProductScreen = ({ history, match }) => {
             ))}
             <ListGroup.Item>
               <h2>Write a Customer Review</h2>
-              {successProductReview && (
+              {successPostReview && (
                 <Message variant="success">
                   Review submitted successfully
                 </Message>
               )}
-              {loadingProductReview && <Loader />}
-              {errorProductReview && (
-                <Message variant="danger">{errorProductReview}</Message>
+              {loadingPostReview && <Loader />}
+              {errorPostReview && (
+                <Message variant="danger">{errorPostReview}</Message>
               )}
               {userInfo ? (
                 <Form onSubmit={submitHandler}>
@@ -142,7 +136,7 @@ const ProductScreen = ({ history, match }) => {
                     ></Form.Control>
                   </Form.Group>
                   <Button
-                    disabled={loadingProductReview}
+                    disabled={loadingPostReview}
                     type="submit"
                     variant="primary"
                   >
@@ -162,4 +156,4 @@ const ProductScreen = ({ history, match }) => {
   );
 };
 
-export default ProductScreen;
+export default PostScreen;

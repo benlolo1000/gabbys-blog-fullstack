@@ -1,4 +1,4 @@
-const products = [
+const posts = [
   {
     name: 'Airpods Wireless Bluetooth Headphones',
     image: '/images/airpods.jpg',
@@ -73,4 +73,4 @@ const products = [
   },
 ];
 
-export default products;
+export default posts;

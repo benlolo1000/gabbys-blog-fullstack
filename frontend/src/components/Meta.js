@@ -13,8 +13,8 @@ const Meta = ({ title, description, keywords }) => {
 
 Meta.defaultProps = {
   title: "Welcome To Gabby's Blog",
-  description: 'We sell the best products for cheap',
-  keywords: 'electronics, buy electronics, cheap electroincs',
+  description: 'We create delicious food',
+  keywords: 'food, vegetarian, healthy food',
 };
 
 export default Meta;

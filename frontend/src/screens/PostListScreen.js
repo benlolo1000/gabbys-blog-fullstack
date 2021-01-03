@@ -5,50 +5,46 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
-import {
-  listProducts,
-  deleteProduct,
-  createProduct,
-} from '../actions/productActions';
-import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
+import { listPosts, deletePost, createPost } from '../actions/postActions';
+import { POST_CREATE_RESET } from '../constants/postConstants';
 
-const ProductListScreen = ({ history, match }) => {
+const PostListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1;
 
   const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page, pages } = productList;
+  const postList = useSelector((state) => state.postList);
+  const { loading, error, posts, page, pages } = postList;
 
-  const productDelete = useSelector((state) => state.productDelete);
+  const postDelete = useSelector((state) => state.postDelete);
   const {
     loading: loadingDelete,
     error: errorDelete,
     success: successDelete,
-  } = productDelete;
+  } = postDelete;
 
-  const productCreate = useSelector((state) => state.productCreate);
+  const postCreate = useSelector((state) => state.postCreate);
   const {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-    product: createdProduct,
-  } = productCreate;
+    post: createdPost,
+  } = postCreate;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    dispatch({ type: PRODUCT_CREATE_RESET });
+    dispatch({ type: POST_CREATE_RESET });
 
     if (!userInfo || !userInfo.isAdmin) {
       history.push('/login');
     }
 
     if (successCreate) {
-      history.push(`/admin/product/${createdProduct._id}/edit`);
+      history.push(`/admin/post/${createdPost._id}/edit`);
     } else {
-      dispatch(listProducts('', pageNumber));
+      dispatch(listPosts('', pageNumber));
     }
   }, [
     dispatch,
@@ -56,29 +52,29 @@ const ProductListScreen = ({ history, match }) => {
     userInfo,
     successDelete,
     successCreate,
-    createdProduct,
+    createdPost,
     pageNumber,
   ]);
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
-      dispatch(deleteProduct(id));
+      dispatch(deletePost(id));
     }
   };
 
-  const createProductHandler = () => {
-    dispatch(createProduct());
+  const createPostHandler = () => {
+    dispatch(createPost());
   };
 
   return (
     <>
       <Row className="align-items-center">
         <Col>
-          <h1>Products</h1>
+          <h1>Posts</h1>
         </Col>
         <Col className="text-right">
-          <Button className="my-3" onClick={createProductHandler}>
-            <i className="fas fa-plus"></i> Create Product
+          <Button className="my-3" onClick={createPostHandler}>
+            <i className="fas fa-plus"></i> Create Post
           </Button>
         </Col>
       </Row>
@@ -104,15 +100,15 @@ const ProductListScreen = ({ history, match }) => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
-                <tr key={product._id}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td>${product.ingredients}</td>
-                  <td>{product.category}</td>
-                  <td>{product.brand}</td>
+              {posts.map((post) => (
+                <tr key={post._id}>
+                  <td>{post._id}</td>
+                  <td>{post.name}</td>
+                  <td>${post.ingredients}</td>
+                  <td>{post.category}</td>
+                  <td>{post.brand}</td>
                   <td>
-                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                    <LinkContainer to={`/admin/post/${post._id}/edit`}>
                       <Button variant="light" className="btn-sm">
                         <i className="fas fa-edit"></i>
                       </Button>
@@ -120,7 +116,7 @@ const ProductListScreen = ({ history, match }) => {
                     <Button
                       variant="danger"
                       className="btn-sm"
-                      onClick={() => deleteHandler(product._id)}
+                      onClick={() => deleteHandler(post._id)}
                     >
                       <i className="fas fa-trash"></i>
                     </Button>
@@ -136,4 +132,4 @@ const ProductListScreen = ({ history, match }) => {
   );
 };
 
-export default ProductListScreen;
+export default PostListScreen;
