@@ -22,9 +22,6 @@ const PostEditScreen = ({ match, history }) => {
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
 
-  console.log('at top of file');
-  console.log(ingredients);
-
   const dispatch = useDispatch();
 
   const postDetails = useSelector((state) => state.postDetails);
@@ -97,10 +94,8 @@ const PostEditScreen = ({ match, history }) => {
 
   const addIngredientItem = (e) => {
     e.preventDefault();
-
-    console.log('inside add function');
-    console.log(ingredients);
     setIngredient(ingredients.push(ingredient));
+    setIngredient('');
   };
 
   return (
@@ -129,11 +124,9 @@ const PostEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId="ingredient">
-              {console.log('inside react tag')}
-              {console.log(ingredient)}
               <Form.Label>List Ingredients</Form.Label>
               <Form.Control
-                type="array"
+                type="text"
                 placeholder="Enter ingredient"
                 value={ingredient}
                 onChange={(e) => setIngredient(e.target.value)}

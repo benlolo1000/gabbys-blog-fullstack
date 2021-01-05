@@ -34,6 +34,9 @@ export const listPosts = (keyword = '', pageNumber = '') => async (
       `/api/posts?keyword=${keyword}&pageNumber=${pageNumber}`
     );
 
+    // puts posts in ascending chronologic order
+    data.posts = data.posts.reverse();
+
     dispatch({
       type: POST_LIST_SUCCESS,
       payload: data,

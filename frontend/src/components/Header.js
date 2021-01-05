@@ -25,7 +25,6 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav className="ml-auto">
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
@@ -44,7 +43,11 @@ const Header = () => {
                 </LinkContainer>
               )}
               {userInfo && userInfo.isAdmin && (
-                <NavDropdown title="Admin" id="adminmenu">
+                <NavDropdown
+                  className="adminDropdown"
+                  title="Admin"
+                  id="adminmenu"
+                >
                   <LinkContainer to="/admin/userlist">
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>
@@ -54,6 +57,7 @@ const Header = () => {
                 </NavDropdown>
               )}
             </Nav>
+            <Route render={({ history }) => <SearchBox history={history} />} />
           </Navbar.Collapse>
         </Container>
       </Navbar>

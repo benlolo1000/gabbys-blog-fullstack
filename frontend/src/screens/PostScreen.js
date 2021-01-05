@@ -26,6 +26,7 @@ const PostScreen = ({ history, match }) => {
 
   const postDetails = useSelector((state) => state.postDetails);
   const { loading, error, post } = postDetails;
+  console.log(post.image);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -48,10 +49,6 @@ const PostScreen = ({ history, match }) => {
     }
   }, [dispatch, match, successPostReview]);
 
-  const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`);
-  };
-
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
@@ -64,7 +61,7 @@ const PostScreen = ({ history, match }) => {
 
   return (
     <div className="postScreen">
-      <Link className="btn btn-light my-3" to="/">
+      <Link id="goBackBtn" className="btn btn-light my-3" to="/">
         Go Back
       </Link>
       {loading ? (
@@ -74,8 +71,8 @@ const PostScreen = ({ history, match }) => {
       ) : (
         <>
           <Meta title={post.name} />
+          <h3 className="postTitle">{post.name}</h3>
           <Image src={post.image} alt={post.name} fluid />
-          <h3>{post.name}</h3>
           <Rating value={post.rating} text={`${post.numReviews} reviews`} />
           <div className="ingredients">
             {post.ingredients ? (

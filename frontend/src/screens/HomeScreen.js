@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import '../styles/homeScreen.css';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
@@ -32,27 +33,30 @@ const HomeScreen = ({ match }) => {
         </Link>
       )}
 
-      <h1 style={{ textAlign: 'center' }}>Latest Posts</h1>
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant="danger">{error}</Message>
-      ) : (
-        <>
-          <Row>
-            {posts.map((post) => (
-              <Col key={post._id} sm={12} md={6} lg={4} xl={3}>
-                <Post post={post} />
-              </Col>
-            ))}
-          </Row>
-          <Paginate
-            pages={pages}
-            page={page}
-            keyword={keyword ? keyword : ''}
-          />
-        </>
-      )}
+      <h1 className="homeScreenTitle">Latest Posts</h1>
+      <div className="homeScreen">
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Message variant="danger">{error}</Message>
+        ) : (
+          <>
+            {posts
+              ? posts.map((post, index) => (
+                  <div key={post._id} className={`item${index}`}>
+                    <Post index={index} post={post} />
+                  </div>
+                ))
+              : null}
+
+            <Paginate
+              pages={pages}
+              page={page}
+              keyword={keyword ? keyword : ''}
+            />
+          </>
+        )}
+      </div>
     </>
   );
 };
