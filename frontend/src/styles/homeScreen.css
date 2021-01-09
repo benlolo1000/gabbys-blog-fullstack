@@ -282,4 +282,106 @@
     display: flex;
     flex-direction: column;
   }
+
+  .postContainer0 {
+    min-height: 300px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .item0 h3 {
+    padding: 10px;
+    margin: 20px;
+    background-color: white;
+    color: #e3686b;
+  }
+  .item0 p {
+    padding: 10px;
+    margin: 20px;
+    background-color: white;
+    color: #e3686b;
+  }
+  .rating0 {
+    padding: 10px;
+    margin: 20px;
+    background-color: #e3686b;
+    color: white;
+  }
+  .postContainer1 {
+    min-height: 300px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .item1 h3 {
+    padding: 10px;
+    margin: 20px;
+    background-color: white;
+    color: #e3686b;
+  }
+  .item1 p {
+    padding: 10px;
+    margin: 20px;
+    background-color: white;
+    color: #e3686b;
+  }
+  .rating1 {
+    padding: 10px;
+    margin: 20px;
+    background-color: #e3686b;
+    color: white;
+  }
+  .postContainer2 {
+    min-height: 300px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .postContainer3 {
+    min-height: 300px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .postContainer4 {
+    min-height: 300px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .postContainer5 {
+    min-height: 300px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .postContainer6 {
+    min-height: 300px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .postContainer7 {
+    min-height: 300px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
 }
