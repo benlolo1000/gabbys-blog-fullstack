@@ -12,7 +12,7 @@ const Post = ({ post, index }) => {
           // style={{ backgroundImage: `url(${post.image})` }}
           className={`postContainer${index}`}
           style={{
-            backgroundImage: `url(http://localhost:3000/uploads/${imageURL})`,
+            backgroundImage: `url(https://safe-basin-58625.herokuapp.com/${post.image})`,
             // this will need to become localhost:5000 upon deployment I believe...
           }}
         >
