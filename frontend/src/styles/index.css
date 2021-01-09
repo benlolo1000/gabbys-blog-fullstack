@@ -1,6 +1,7 @@
 main {
   padding: 0 2em 0 2em;
   background-color: white;
+  white-space: pre-line;
 }
 
 h3 {
@@ -45,19 +46,4 @@ a#username.dropdown-toggle.nav-link {
   border-radius: 10px;
   margin: 10px;
   line-height: 20px;
-}
-
-/* postScreen */
-.postScreen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-#goBackBtn {
-  align-self: start;
-  background-color: #e3686b;
-}
-.postTitle {
-  padding: 50px;
 }

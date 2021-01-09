@@ -6,7 +6,6 @@ const Post = ({ post, index }) => {
   // const imageURL = post.image.substring(9);
   return (
     <>
-      {console.log(post.image)}
       <Link to={`/post/${post._id}`}>
         <div
           style={{ backgroundImage: `url(${post.image})` }}
@@ -14,7 +13,7 @@ const Post = ({ post, index }) => {
 
           // style={{
           //   backgroundImage: `url(http://localhost:3000/uploads/${imageURL})`,
-          //   // this will need to become localhost:5000 upon deployment I believe...
+          //   // this doesn't work.
           // }}
         >
           {/* <img src={post.image} className="postImage" /> */}

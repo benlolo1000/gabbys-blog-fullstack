@@ -16,10 +16,10 @@ const PostEditScreen = ({ match, history }) => {
   const [ingredient, setIngredient] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [image, setImage] = useState('');
-  const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
+  const [about, setAbout] = useState('');
   const [uploading, setUploading] = useState(false);
 
   const dispatch = useDispatch();
@@ -45,10 +45,10 @@ const PostEditScreen = ({ match, history }) => {
         setName(post.name);
         setIngredient(post.ingredient);
         setImage(post.image);
-        setBrand(post.brand);
         setCategory(post.category);
         setCountInStock(post.countInStock);
         setDescription(post.description);
+        setAbout(post.about);
       }
     }
   }, [dispatch, history, postId, post, successUpdate]);
@@ -84,9 +84,9 @@ const PostEditScreen = ({ match, history }) => {
         name,
         ingredients,
         image,
-        brand,
         category,
         description,
+        about,
         countInStock,
       })
     );
@@ -159,16 +159,6 @@ const PostEditScreen = ({ match, history }) => {
               {uploading && <Loader />}
             </Form.Group>
 
-            <Form.Group controlId="brand">
-              <Form.Label>Brand</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter brand"
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
             <Form.Group controlId="countInStock">
               <Form.Label>Count In Stock</Form.Label>
               <Form.Control
@@ -186,6 +176,16 @@ const PostEditScreen = ({ match, history }) => {
                 placeholder="Enter category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="description">
+              <Form.Label>About</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter about"
+                value={about}
+                onChange={(e) => setAbout(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

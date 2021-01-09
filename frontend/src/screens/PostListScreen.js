@@ -106,7 +106,6 @@ const PostListScreen = ({ history, match }) => {
                   <td>{post.name}</td>
                   <td>${post.ingredients}</td>
                   <td>{post.category}</td>
-                  <td>{post.brand}</td>
                   <td>
                     <LinkContainer to={`/admin/post/${post._id}/edit`}>
                       <Button variant="light" className="btn-sm">

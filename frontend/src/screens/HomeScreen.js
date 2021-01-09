@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import '../styles/homeScreen.css';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col } from 'react-bootstrap';
 import Post from '../components/Post';
 import Message from '../components/Message';
 import Loader from '../components/Loader';

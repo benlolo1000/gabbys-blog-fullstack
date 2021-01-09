@@ -63,11 +63,11 @@ const createPost = asyncHandler(async (req, res) => {
     ingredients: '',
     user: req.user._id,
     image: '/images/sample.jpg',
-    brand: 'Sample brand',
     category: 'Sample category',
     countInStock: 0,
     numReviews: 0,
     description: 'Sample description',
+    about: 'Sample about',
   });
 
   const createdPost = await post.save();
@@ -82,8 +82,8 @@ const updatePost = asyncHandler(async (req, res) => {
     name,
     ingredients,
     description,
+    about,
     image,
-    brand,
     category,
     countInStock,
   } = req.body;
@@ -94,8 +94,8 @@ const updatePost = asyncHandler(async (req, res) => {
     post.name = name;
     post.ingredients = ingredients;
     post.description = description;
+    post.about = about;
     post.image = image;
-    post.brand = brand;
     post.category = category;
     post.countInStock = countInStock;
 

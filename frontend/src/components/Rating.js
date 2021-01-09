@@ -3,6 +3,8 @@ import React from 'react';
 const Rating = ({ index, value, text, color }) => {
   return (
     <div className={`rating${index}`}>
+      {console.log(index)}
+      {console.log(typeof index)}
       <span>
         <i
           style={{ color }}

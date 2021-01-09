@@ -1,0 +1,46 @@
+/* postScreen */
+.postScreenContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.postScreen {
+  display: flex;
+  width: 1000px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.postScreen h3 {
+  text-align: center;
+}
+
+#goBackBtn {
+  align-self: start;
+  background-color: #e3686b;
+}
+.postTitle {
+  padding: 20px;
+}
+.postImage {
+  width: 1000px;
+  margin: 50px;
+}
+
+.ingredients {
+  margin: 30px;
+}
+.about {
+  margin: 30px;
+}
+.description {
+  margin: 30px;
+}
+
+/* this is a hacky solution but it works so I will keep it */
+.ratingundefined {
+  margin: 30px;
+  width: inherit;
+  padding-left: 30px;
+}
