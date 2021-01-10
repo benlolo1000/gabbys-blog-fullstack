@@ -1,4 +1,4 @@
-# ProShop eCommerce Platform
+# Gabbys Food Blog
 
 > Fully Functional Food Blog Built with the MERN Stack & Redux.
 
